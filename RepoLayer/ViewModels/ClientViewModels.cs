@@ -33,7 +33,7 @@ namespace RepoLayer.ViewModels
         public string? ProfilePicture { get; set; }
         public string? Project { get; set; }
         [RegularExpression(@"^\d{5}(?:[-\s]\d{4})?$", ErrorMessage = "Invalid postcode")]
-        public string? Postcode { get; set; }
+        public string? Pincode { get; set; }
         public int RoleId { get; set; }
 
     }
