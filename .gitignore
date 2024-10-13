@@ -361,5 +361,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/RepoLayer/ViewModels/ClientViewModels.cs
-/RepoLayer/ViewModels/ClientViewModels.cs
