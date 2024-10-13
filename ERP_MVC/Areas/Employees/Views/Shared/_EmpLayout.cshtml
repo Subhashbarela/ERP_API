@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/leavestatus.css" />
+    <link href="~/fontcss/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/fontcss/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/calendarstyle.css" rel="stylesheet" />
+    <link href="~/css/iconsheet.css" rel="stylesheet" />
+</head>
+<body class="">
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="overflow-auto">
+            <div class="sidebar-header">
+                <h4>ERP</h4>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="@Url.Action("Index", "Employee", new { area = "Employees" })">Dashboard</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("About", "Home")">About</a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#calendarSubmenu" aria-expanded="false" class="dropdown-toggle">Calendar</a>
+                    <ul class="collapse list-unstyled" id="calendarSubmenu">
+                        <li>
+                            <a href="@Url.Action("LeaveStatus", "Calendar", new { area = "Employees" })">Leave Status</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("RemainingLeaveDetails", "Calendar", new { area = "Employees" })">Leave-Info</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Festival", "Calendar", new { area = "Employees" })">Festival</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Report")">Ticket</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Contact", "Home")">Contact</a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#profileSubmenu" aria-expanded="false" class="dropdown-toggle">Profile</a>
+                    <ul class="collapse list-unstyled" id="profileSubmenu">
+                        <li>
+                            @* <button id="EmployeeProfile" class="btn btn-primary">My Profile</button> *@
+                            <a id="EmployeeProfile" href="javascript:void(0);">My Profile</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("AccountSetting", "Profile", new { area = "Employees" })">Account Setting</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Logout", "Home", new { area = "" })">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- Page Content -->
+        <div id="content" class="container-fluid body-content">
+            @RenderBody()
+        </div>
+    </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/custom.js"></script>
+    <script src="~/js/employeejs/login.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="collapse"]').on('click', function () {
+                var target = $(this).attr('data-target');
+                $(target).collapse('toggle');
+            });
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

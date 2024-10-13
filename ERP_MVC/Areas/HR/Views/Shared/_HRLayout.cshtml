@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/calendarstylesheet.css" />
+    <link rel="stylesheet" href="~/css/emplist.css" />
+    <link href="~/css/admin/admin.css" rel="stylesheet" />
+    <link href="~/areas/admin/css/admin.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/ERP_SYSTEM.styles.css" asp-append-version="true" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+</head>
+<body class="">
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar" class="overflow-auto">
+            <div class="sidebar-header">
+                <h4>ERP</h4>
+            </div>
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="@Url.Action("HRDashboard", "HR", new { area = "HR" })">Dashboard</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Employee", new { area = "HR" })">Employees</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Payment", new { area = "HR" })">Payment</a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#calendarSubmenu" aria-expanded="false" class="dropdown-toggle">Calendar</a>
+                    <ul class="collapse list-unstyled" id="calendarSubmenu">
+                        <li>
+                            <a href="#" data-toggle="collapse" data-target="#leaveSubmenu" aria-expanded="false" class="dropdown-toggle">Leave Status</a>
+                            <ul class="collapse list-unstyled" id="leaveSubmenu">
+                                <li>
+                                    <a href="@Url.Action("PendingLeaveRequests", "Calendar", new { area = "HR" })">Pending</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("ApprovedLeaveRequests", "Calendar", new { area = "HR" })">Approved</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("RejectedLeaveRequests", "Calendar", new { area = "HR" })">Rejected</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Hollyday", "Calendar", new { area = "HR" })">Hollyday</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Festival", "Calendar", new { area = "HR" })">Festival</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("Index", "Department", new { area = "HR" })">Department</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Ticket", new { area = "HR" })">Ticket</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#profileSubmenu" aria-expanded="false" class="dropdown-toggle">Profile</a>
+                    <ul class="collapse list-unstyled" id="profileSubmenu">
+                        <li>
+                            <a href="@Url.Action("HRProfile", "HR", new { area = "HR" })">My Profile</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("AccountSetting", "Profile", new { area = "HR" })">Account Setting</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Logout", "Home", new { area = "" })">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- Page Content -->
+        <div id="content" class="container-fluid body-content ">
+            @RenderBody()
+        </div>
+    </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="collapse"]').on('click', function () {
+                var target = $(this).attr('data-target');
+                $(target).collapse('toggle');
+            });
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

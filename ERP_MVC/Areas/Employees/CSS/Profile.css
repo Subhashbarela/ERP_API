@@ -1,0 +1,30 @@
+﻿body {
+}
+
+.top-bar {
+    background-color: #7386d5; /* Change the color as per your preference */
+    color: #fff; /* Change text color if necessary */
+    padding: 10px; /* Adjust padding as needed */
+}
+
+    .top-bar h2 {
+        margin: 0; /* Remove default margin */
+    }
+
+.labels {
+    font-size: 18px;
+    font-weight: bold;
+}
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.input-group-append {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+

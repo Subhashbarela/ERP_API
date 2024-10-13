@@ -1,0 +1,35 @@
+﻿
+/*Leave Status Table*/
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 0.30rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #b2c3dc;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.table-bordered {
+    border: 1px solid #ddd;
+}
+
+    .table-bordered th,
+    .table-bordered td {
+        border: 1px solid #ddd;
+    }
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}

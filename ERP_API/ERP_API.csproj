@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <COMReference Include="Accessibility">
+	    <WrapperTool>tlbimp</WrapperTool>
+	    <VersionMinor>1</VersionMinor>
+	    <VersionMajor>1</VersionMajor>
+	    <Guid>1ea4dbf0-3c3b-11cf-810c-00aa00389b71</Guid>
+	    <Lcid>0</Lcid>
+	    <Isolated>false</Isolated>
+	    <EmbedInteropTypes>true</EmbedInteropTypes>
+	  </COMReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.33" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.33" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.33" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.33" />
+		<PackageReference Include="MediatR" Version="6.0.0" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.30" />
+		<PackageReference Include="Sieve" Version="2.5.5" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ERP_MVC\ERP_MVC.csproj" />
+	</ItemGroup>
+
+</Project>

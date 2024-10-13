@@ -1,0 +1,55 @@
+﻿@model IEnumerable<RepoLayer.ViewModels.EmployeeViewModel>
+
+@{
+    ViewData["Title"] = "ShowEmployeeList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Table</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>ShowEmployeeList</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>FirstName</th>
+                <th>MiddleName</th>
+                <th>LastName</th>
+                <th>MobileNo</th>
+                <th>Education</th>
+                <th>Designation</th>
+                <th>ProfilePicture</th>
+                <th>Address</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Postcode</th>
+                <th>ClientId</th>
+                <th>RoleId</th>
+                <th>CreatedOn</th>
+                <th>CreatedBy</th>
+                <th>ModifiedOn</th>
+                <th>ModifiedBy</th>
+                <th>IsDeleted</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody id="emp-table">
+            <!-- Employee data will be populated here -->
+        </tbody>
+    </table>
+
+    <!-- Load jQuery before the custom script -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/adminjs/adminemp.js"></script>
+</body>
+</html>

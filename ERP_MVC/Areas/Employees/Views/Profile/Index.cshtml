@@ -1,0 +1,441 @@
+﻿@model RepoLayer.ViewModels.EmployeeViewModel;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Employees/Views/Shared/_EmpLayout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ775/9aKlTPzCfwAM5bZz5eFjFV3wLMGJdv" crossorigin="anonymous">
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="~/css/iconsheet.css" rel="stylesheet" />
+    <link href="~/fontcss/font-awesome.css" rel="stylesheet" />
+    <link href="~/fontcss/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/profile.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <h1>Employee Profile</h1>
+            <div class="col-md-9">
+                <div class="p-3 py-5">
+                    <form id="employeeForm" asp-action="UpdateEmployee" asp-controller="Employee" asp-area="Employees" method="post">
+                        <div class="row mt-2 border-bottom pb-3">
+                            <div class="col-md-4">
+                                <label for="employeeId" class="labels">Employee ID</label>
+                                <input type="text" id="Id" class="form-control" placeholder="Employee ID"  readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="username" class="labels">Username <span class="text-danger">*</span></label>
+                                <input type="text" id="username" class="form-control" placeholder="Username"  readonly required>
+                                <span class="text-danger">@Html.ValidationMessageFor(m => m.Username)</span>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="clientId" class="labels">Client ID</label>
+                                <input type="text" id="clientId" class="form-control" placeholder="Client ID"  readonly>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <label for="firstName" class="labels">First Name <span class="text-danger">*</span></label>
+                                <input type="text" id="firstName" class="form-control" placeholder="First name"  readonly required>
+                                <span class="text-danger">@Html.ValidationMessageFor(m => m.FirstName)</span>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="middleName" class="labels">Middle Name</label>
+                                <input type="text" id="middleName" class="form-control" placeholder="Middle name"  readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="lastName" class="labels">Last Name <span class="text-danger">*</span></label>
+                                <input type="text" id="lastName" class="form-control" placeholder="Last name"  readonly required>
+                                <span class="text-danger">@Html.ValidationMessageFor(m => m.LastName)</span>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <label for="mobileNo" class="labels">Mobile Number</label>
+                                <input type="text" id="mobileNo" class="form-control" placeholder="Mobile number"  readonly pattern="^\d{10}$">
+                                <span class="text-danger">@Html.ValidationMessageFor(m => m.MobileNo)</span>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="education" class="labels">Education</label>
+                                <input type="text" id="education" class="form-control" placeholder="Education"  readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="designation" class="labels">Designation</label>
+                                <input type="text" id="designation" class="form-control" placeholder="Designation" readonly>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <label for="createdOn" class="labels">Created On <span class="text-danger">*</span></label>
+                                <input type="date" id="createdOn" class="form-control"  required>
+                                <span class="text-danger">@Html.ValidationMessageFor(m => m.CreatedOn)</span>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="postcode" class="labels">Postcode</label>
+                                <input type="text" id="postcode" class="form-control" placeholder="Postcode" readonly pattern="^\d{5}(?:[-\s]\d{4})?$">
+                                <span class="text-danger">@Html.ValidationMessageFor(m => m.Postcode)</span>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="createdBy" class="labels">created By</label>
+                                <input type="text" id="createdBy" class="form-control" placeholder="created By">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <label for="address" class="labels">Address</label>
+                                <input type="text" id="address" class="form-control" placeholder="Address"  readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="state" class="labels">State</label>
+                                <input type="text" id="state" class="form-control" placeholder="State"  readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="country" class="labels">Country</label>
+                                <input type="text" id="country" class="form-control" placeholder="Country"  readonly>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <label for="email" class="labels">Email ID <span class="text-danger">*</span></label>
+                                <input type="email" id="email" class="form-control" placeholder="Email ID"  required>
+                                <span class="text-danger">@Html.ValidationMessageFor(m => m.Email)</span>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="passwordInput" class="labels">Password <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="password" id="passwordInput" class="form-control" placeholder="Password" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="togglePassword"><i class="fas fa-eye"></i></span>
+                                    </div>
+                                </div>
+                                <span class="text-danger">@Html.ValidationMessageFor(m => m.Password)</span>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="roleId" class="labels">Role ID</label>
+                                <input type="text" id="roleId" class="form-control" placeholder="Role ID"  readonly>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <label for="modifiedOn" class="labels">Modified On</label>
+                                <input type="date" id="modifiedOn" class="form-control" >
+                            </div>
+                            <div class="col-md-4">
+                                <label for="modifiedBy" class="labels">Modified By</label>
+                                <input type="text" id="modifiedBy" class="form-control" placeholder="Modified By" >
+                            </div>
+                            <div class="col-md-4 d-flex">                               
+                                <input type="checkbox" id="isDeleted" class="form-control">
+                                <span for="isDeleted" class="labels">Is Deleted</span>
+                            </div>
+                        </div>
+                        <div class="mt-5 text-center">
+                            <input type="submit" value="Submit" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="Profile Picture">
+                    <span class="font-weight-bold"></span>
+                    <span class="text-black-50"></span>
+                    <form method="post" enctype="multipart/form-data" id="profilePicForm">
+                        <input type="file" id="profilePicInput" name="profilePicInput" style="display: none;" required onchange="submitForm()">
+                        <label for="profilePicInput" class="btn btn-primary mt-3">Choose Photo</label>
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.ProfilePicture)</span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+</head>
+<body>
+    <div class="top-bar">
+        <h2>Profile</h2>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-9">
+                        <form id="employeeForm" asp-antiforgery="true">
+                            <div class="row">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Id, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @id = "Id", @class = "form-control", @readonly = "readonly" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.FirstName, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                             @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @id = "FirstName", @class = "form-control" } })
+                                            <input class = "form-control" value="raj" id="FirstName" type="text" placeholder="First Name" />
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.LastName, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @id = "LastName", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Education, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.Education, new { htmlAttributes = new { @id = "Education", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Education, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ProfilePicture, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-image"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.ProfilePicture, new { htmlAttributes = new { @id = "ProfilePicture", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.ProfilePicture, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.State, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.State, new { htmlAttributes = new { @id = "State", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CreatedOn, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.CreatedOn, new { htmlAttributes = new { @id = "CreatedOn", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.CreatedOn, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ModifiedOn, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.ModifiedOn, new { htmlAttributes = new { @id = "ModifiedOn", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.ModifiedOn, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Email, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @id = "Email", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ClientId, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.ClientId, new { htmlAttributes = new { @id = "ClientId", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Postcode, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-map-pin"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.Postcode, new { htmlAttributes = new { @id = "Postcode", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Postcode, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @* ...........second line.............. *@
+@* <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Username, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @id = "Username", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.MiddleName, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @id = "MiddleName", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.MobileNo, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @id = "MobileNo", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Designation, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @id = "Designation", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Address, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @id = "Address", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Country, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-globe"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @id = "Country", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CreatedBy, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-globe"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @id = "CreatedBy", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ModifiedBy, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-globe"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.ModifiedBy, new { htmlAttributes = new { @id = "ModifiedBy", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.ModifiedBy, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Password, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @id = "Password", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.RoleId, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                            @Html.EditorFor(model => model.RoleId, new { htmlAttributes = new { @id = "RoleId", @class = "form-control" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.IsDeleted, new { @class = "form-label" })
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                            <div class="form-control">
+                                                @Html.CheckBoxFor(model => model.IsDeleted, new { @id = "IsDeleted", @class = "form-check-input" , @readonly = "readonly" })
+                                            </div>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.IsDeleted, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group  d-flex justify-content-around">
+                                        <input type="submit" id="updateEmployee" value="Save" class="btn btn-primary" />
+                                        @Html.ActionLink("Back to List", "Index", "Employees", new { area = "Admin" }, new { @class = "btn btn-secondary float-end" })
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                            <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                            @* <img class="rounded-circle mt-5" width="150px" src="@Model.ProfilePicture"> *@
+@*  <span class="font-weight-bold">@Model.FirstName</span> *@
+@*  <span class="text-black-50">atulbari@mail.com.my</span>
+                            <input type="file" id="profilePicInput" style="display: none;">
+                            <label for="profilePicInput" class="btn btn-primary mt-3">Choose Photo</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body> *@

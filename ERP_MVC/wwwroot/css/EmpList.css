@@ -1,0 +1,48 @@
+﻿.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;   
+    background-color: #3b475d;
+    padding: 5px; /* Adjust padding for better spacing */
+}
+
+.heading-list {
+    text-align: center;
+    font-weight: bold;
+    padding: 21px; /* Adjust padding for more spacing */
+    background-color: #3d4f9c; /* Optional: matching background color */
+    color: white; /* Optional: text color for better readability */
+}
+
+.form-inline {
+    display: flex;
+    align-items: center;
+}
+
+.search_btn {
+    margin-right: 10px;
+    height: 42px;
+    background-color: #638bdc;
+    border-color: #101014;
+    color: white; /* Adjust margin to space out the button */
+}
+
+    .search_btn:hover {
+        margin-right: 10px;
+        height: 42px;
+        border-left: none;
+        background-color: #221987;
+        border-color: #101014;
+        color: #fff; /* Adjust margin to space out the button */
+    }
+
+.form-control {
+    border-right: none;
+    padding: 9px;
+}

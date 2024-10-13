@@ -1,0 +1,66 @@
+﻿body {
+}
+
+.section-head {
+    font-size: 2rem;
+    max-width: 300px;
+    padding: 10px;
+    color: brown;
+    font-weight: 600;
+    margin: 10px;
+}
+
+.add-emp {
+    font-size: 18px;
+    max-width: 150px;
+    padding: 8px;
+    color: white;
+    font-weight: 600;
+    margin: 10px;
+    border-radius: 50px;
+    text-align: center;
+    background-color: brown;
+}
+
+.margin {
+    margin: 10px;
+}
+
+.search {
+    font-size: 18px;
+    max-width: 280px;
+    color: white;
+    font-weight: 600;
+    border-radius: 50px;
+    text-align: center;
+    background-color: brown;
+}
+
+.search-container button {
+    float: right;
+    padding: 6px 10px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type=text] {
+    padding: 6px;
+    margin: 5px;
+    font-size: 17px;
+    border: none;
+}
+
+.search-container button:hover {
+    background: #ccc;
+}
+
+span {
+    padding-right: 10px;
+}
+
+a, a:hover {
+    color: white;
+    text-decoration: none;
+}

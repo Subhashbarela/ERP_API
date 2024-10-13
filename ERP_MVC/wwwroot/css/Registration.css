@@ -1,0 +1,14 @@
+﻿ .form-control {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    padding: .375rem .75rem;
+}
+
+.form-control {
+    background-color: #e9ecef;
+}
+
+.hr-xs {
+    margin: .5rem 0;
+}
