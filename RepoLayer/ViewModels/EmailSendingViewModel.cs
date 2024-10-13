@@ -11,5 +11,6 @@ namespace RepoLayer.ViewModels
         public string From { get; set; }
         public string Message { get; set; }
         public string Body { get; set; }
+        public string SecuritySetting { get; set; }
     }
 }
