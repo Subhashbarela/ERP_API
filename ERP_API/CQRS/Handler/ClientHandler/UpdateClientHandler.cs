@@ -32,7 +32,7 @@ namespace ERP_API.CQRS.Handler.ClientHandler
                 Country = request.Country,
                 Email = request.Email,
                 Password = request.Password,
-                Postcode = request.Postcode,
+                Pincode = request.Postcode,
                 CreatedOn = request.CreatedOn,
                 CreatedBy = request.CreatedBy,
                 ModifiedOn = request.ModifiedOn,

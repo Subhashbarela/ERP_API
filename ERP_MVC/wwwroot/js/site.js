@@ -3,34 +3,53 @@
 $(document).ready(function () {
     $('[data-toggle="collapse"]').on('click', function () {
         var target = $(this).attr('data-target');
-        $(target).collapse('toggle');
+        if ($(target).length) {
+            $(target).collapse('toggle');
+        } else {
+            console.warn('Collapse target not found:', target);
+        }
     });
 
     // To toggle password field
-    document.getElementById('togglePassword').addEventListener('click', function (e) {
-        // Toggle the type attribute
-        const passwordInput = document.getElementById('passwordInput');
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
+    var togglePassword = document.getElementById('togglePassword');
+    if (togglePassword) {
+        togglePassword.addEventListener('click', function (e) {
+            const passwordInput = document.getElementById('passwordInput');
+            if (passwordInput) {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+            }
 
-        // Toggle the eye slash icon
-        this.querySelector('i').classList.toggle('fa-eye');
-        this.querySelector('i').classList.toggle('fa-eye-slash');
-    });
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            }
+        });
+    }
 
     // Access Profile Images
     function previewAndSubmit() {
         const fileInput = document.getElementById('profilePicInput');
+        if (!fileInput) {
+            console.error('profilePicInput not found');
+            return;
+        }
         const file = fileInput.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                document.querySelector('img.rounded-circle').src = e.target.result;
-                document.getElementById('profilePicForm').submit();
+                const img = document.querySelector('img.rounded-circle');
+                if (img) {
+                    img.src = e.target.result;
+                }
+                const form = document.getElementById('profilePicForm');
+                if (form) {
+                    form.submit();
+                }
             };
             reader.readAsDataURL(file);
         } else {
-            // If no file is selected, do nothing or handle as necessary
             console.log('No file selected');
         }
     }

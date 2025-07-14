@@ -8,8 +8,11 @@ namespace ERP_API.CQRS.Command.EmployeeCommand
 {
     public class CreateEmployeeCommand : IRequest<Employee>
     {
+        private readonly IMapper _mapper;
+
         public CreateEmployeeCommand(EmployeeViewModel employeeDTO, IMapper mapper)
         {
+            _mapper = mapper; // Initialize _mapper with the provided IMapper instance
             var employeeEntity = _mapper.Map<Employee>(employeeDTO);
 
             Username = employeeDTO.Username;
@@ -32,7 +35,7 @@ namespace ERP_API.CQRS.Command.EmployeeCommand
             ModifiedBy = employeeDTO.ModifiedBy;
             IsDeleted = employeeDTO.IsDeleted;
             ClientId = employeeDTO.ClientId;
-            RoleId= employeeDTO.RoleId;
+            RoleId = employeeDTO.RoleId;
         }
 
         public string? Username { get; set; }
@@ -56,7 +59,6 @@ namespace ERP_API.CQRS.Command.EmployeeCommand
         public bool IsDeleted { get; set; } = false;
         public int ClientId { get; set; }
         public int RoleId { get; set; }
-
     }
 }
 

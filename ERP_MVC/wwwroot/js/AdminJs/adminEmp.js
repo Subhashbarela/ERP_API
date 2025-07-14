@@ -5,6 +5,7 @@
 });
 
 function populateEmployeeTable(employees) {
+    debugger;
     var $tableBody = $('#emp-table');
     $tableBody.empty(); 
     employees.forEach(function (employee) {

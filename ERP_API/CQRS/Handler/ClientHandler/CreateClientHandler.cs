@@ -35,7 +35,7 @@ namespace ERP_API.CQRS.Handler.HRHandler
             Country = clientViewModels.Country,
             Email = clientViewModels.Email,
             Password = clientViewModels.Password,
-            Postcode = clientViewModels.Postcode,
+            Pincode = clientViewModels.Postcode,
             CreatedOn = clientViewModels.CreatedOn,
             CreatedBy = clientViewModels.CreatedBy,
             ModifiedOn = clientViewModels.ModifiedOn,

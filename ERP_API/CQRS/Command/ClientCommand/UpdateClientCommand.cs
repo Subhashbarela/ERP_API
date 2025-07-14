@@ -24,7 +24,7 @@ namespace ERP_API.CQRS.Command.ClientCommand
             Country = clientViewModels.Country;
             Email = clientViewModels.Email;
             Password = clientViewModels.Password;
-            Postcode = clientViewModels.Postcode;
+            Postcode = clientViewModels.Pincode;
             CreatedOn = clientViewModels.CreatedOn;
             CreatedBy = clientViewModels.CreatedBy;
             ModifiedOn = clientViewModels.ModifiedOn;

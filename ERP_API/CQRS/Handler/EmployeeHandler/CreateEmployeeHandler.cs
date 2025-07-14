@@ -12,7 +12,7 @@ namespace ERP_API.CQRS.Handler.EmployeeHandler
         private readonly IEmployeeRepo _iEmpRepo;
         private readonly IMapper _mapper;
 
-        public CreateEmployeeHandler(IEmployeeRepo iEmpRepo,IMapper mapper)
+        public CreateEmployeeHandler(IEmployeeRepo iEmpRepo, IMapper mapper)
         {
             _iEmpRepo = iEmpRepo;
             _mapper = mapper;
@@ -20,10 +20,14 @@ namespace ERP_API.CQRS.Handler.EmployeeHandler
 
         public async Task<Employee> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
         {
-            // Map the request (CreateEmployeeCommand) to Employee
-            var employeeEntity = _mapper.Map<Employee>(request);
+            // Map the request (CreateEmployeeCommand) to EmployeeViewModel
+            var employeeViewModel = _mapper.Map<EmployeeViewModel>(request);
+
             // Save the employee entity to the database using the repository
-            return await _iEmpRepo.AddEmployee(employeeEntity);
+            var savedEmployee = await _iEmpRepo.AddEmployee(employeeViewModel);
+
+            // Map the saved EmployeeViewModel back to Employee
+            return _mapper.Map<Employee>(savedEmployee);
         }
     }
 }

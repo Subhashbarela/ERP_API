@@ -6,7 +6,7 @@
 
         fetchEmployeeData();
     });
-
+            
     $('#updateEmployee').click(function () {      
         UpdateEmployee();
     });
@@ -14,6 +14,7 @@
 });
 
 function Login() {
+    debugger;
     var userName = $("#username").val();
     var password = $("#password").val();
     var st = { "UserName": userName, "Password": password };
@@ -23,17 +24,19 @@ function Login() {
         contentType: "application/json",
         data: JSON.stringify(st),
         success: function (response) {           
-            console.log(response);
+            console.log("API success response:", response);
             if (response) {
                 localStorage.setItem('authToken', response);
                 var roleName = GetRoleNameFromToken(response);
+                console.log("Extracted role name:", roleName);
                 RedirectToDashboard(roleName);
             } else {
                 console.error("Token not found in the response");
             }
         },
         error: function (resp) {
-            console.log(resp);
+            console.log("API error response:", resp);
+            alert("Login failed: " + (resp.responseText || "Unknown error"));
         }
     });
 }

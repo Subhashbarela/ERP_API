@@ -11,24 +11,26 @@ using Sieve.Services;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using ERP_API.CQRS.Handler.EmployeeHandler;
+using AutoMapper;
 
 namespace ERP_API.Controllers
 {
     [Authorize(Policy = AuthorizationPolicies.AdminOrHRManagerOrEmployee)]
     [Route("api/Employee")]
     [ApiController]
-    [Authorize]
     public class EmployeeController : ControllerBase
     {
         private readonly IMediator _mediator;
         private readonly SieveProcessor _sieveProcessor;
+        private readonly IMapper _mapper; // Add this field
 
-
-        public EmployeeController(ApplicationDbContext dbContext, IMediator mediator, SieveProcessor sieveProcessor)
+        public EmployeeController(ApplicationDbContext dbContext, IMediator mediator, SieveProcessor sieveProcessor, IMapper mapper) // Add IMapper to constructor
         {
             _mediator = mediator;
-            _sieveProcessor= sieveProcessor;
+            _sieveProcessor = sieveProcessor;
+            _mapper = mapper; // Initialize the _mapper field
         }
+
         [HttpPost]
         [Route("AddEmployee")]
         public async Task<ActionResult> AddEmployee([FromBody] EmployeeViewModel employeeDTO)
@@ -37,7 +39,7 @@ namespace ERP_API.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var command = new CreateEmployeeCommand(employeeDTO);
+                    var command = new CreateEmployeeCommand(employeeDTO, _mapper); // _mapper is now available
                     var result = await _mediator.Send(command);
                     return Ok(result);
                 }
@@ -52,46 +54,22 @@ namespace ERP_API.Controllers
                 return BadRequest();
             }
         }
-        
         [HttpGet]
         [Route("GetEmployeeList")]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployeeList()
+        public async Task<ActionResult> GetEmployeeList()
         {
             try
             {
-                var employeeList = await _mediator.Send(new GetEmployeeListQuery());
-                return Ok(employeeList); 
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error retrieving employee list: {ex.Message}");
-            }
-        }
-
-
-        [HttpGet]
-        [Route("GetEmployeeById")]
-
-        public async Task<Employee> GetEmployeeById(int userId)
-        {
-            var employeeList = await _mediator.Send(new GetEmployeeByIdQuery() { Id = userId });
-            return employeeList;
-        }
-        [HttpPut]
-        [Route("UpdateEmployee")]
-        public async Task<ActionResult> UpdateEmployee([FromBody] EmployeeViewModel employeeDTO)
-        {
-            try
-            {
-                if (ModelState.IsValid)
+                var command = new GetEmployeeListQuery(); // _mapper is now available
+                var result = await _mediator.Send(command);
+                return Ok(result);
+                if (result != null)
                 {
-                    var command = new UpdateEmployeeCommand(employeeDTO);
-                    var result = await _mediator.Send(command);
                     return Ok(result);
                 }
                 else
                 {
-                    return Ok(employeeDTO);
+                    return Ok("Employee list is empty");
                 }
             }
             catch (Exception ex)
@@ -100,12 +78,29 @@ namespace ERP_API.Controllers
                 return BadRequest();
             }
         }
-        [HttpDelete("{Id}")]
-        public async Task<ActionResult> DeleteEmployee(int Id)
+        [HttpGet]
+        [Route("GetEmployeeDetail/{id}")]
+        public async Task<ActionResult> GetEmployeeDetail(int id)
         {
-            var employeeList = await _mediator.Send(new DeleteEmployeeCommand() { Id = Id });
-            return Ok(employeeList);
+            try
+            {
+                var command = new GetEmployeeByIdQuery { Id=id}; // You need to implement this query
+                var result = await _mediator.Send(command);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return NotFound($"Employee with ID {id} not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "An error occurred while processing your request." + ex.Message);
+                return BadRequest();
+            }
+
         }
-        
     }
-}
+    }
